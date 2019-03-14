@@ -117,37 +117,34 @@ public class ImageProcessor extends FunctioalForEachLoops {
 		// TODO: Implement this method, remove the exception.
         logger.log("Preparing for Nearest neighbor changing...");
 
+        // The new image (to be) rescaled
         BufferedImage ans = newEmptyImage(outWidth, outHeight);
 
-        int factHeight = outHeight / inHeight,
-                factWidth = outWidth / inWidth;
+        // Calculate the height factor and the width factor
+        double factHeight = (double) inHeight / (double) outHeight,
+                factWidth = (double) inWidth / (double) outWidth;
 
-        int currPixHeight = 0, currPixWidth = 0;
+        // Iterate over all the pixels in the image
         for (int i = 0; i < outWidth; i++) {
-            if(i != 0) currPixWidth += factWidth;
+            // Current nearest neighbor in the x's
+            int pWidth = (int)(i * factWidth);
+            int red, green, blue;
+
             for (int j = 0; j < outHeight; j++) {
-                if(j != 0) currPixHeight += factHeight;
-                Color c = new Color(workingImage.getRGB(currPixWidth, currPixHeight));
-                int red = c.getRed();
-                int green = c.getGreen();
-                int blue = c.getBlue();
+                // Current nearest neighbor in the y's
+                int pHeight = (int)(j * factHeight);
+                Color c = new Color(workingImage.getRGB(pWidth, pHeight));
+                red = c.getRed();
+                green = c.getGreen();
+                blue = c.getBlue();
+
+                // Set pixel in the new image same as the NN found
                 Color newColor = new Color(red, green, blue);
                 ans.setRGB(i, j, newColor.getRGB());
             }
-            currPixHeight = 0;
         }
-        /*
-        forEach((y,x) -> {
-            Color c = new Color(workingImage.getRGB(x, y));
-            int red = c.getRed();
-            int green = c.getGreen();
-            int blue = c.getBlue();
-            Color newColor = new Color(red, green, blue);
-            ans.setRGB(x, y, newColor.getRGB());
-        });
-        */
 
-        logger.log("Changing greyscale done!");
+        logger.log("Changing using Nearest neighbor done!");
         return ans;
 	}
 }
