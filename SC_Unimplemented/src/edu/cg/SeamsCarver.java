@@ -15,6 +15,9 @@ public class SeamsCarver extends ImageProcessor {
 	private ResizeOperation resizeOp;
 	boolean[][] imageMask;
 	// TODO: Add some additional fields
+    int[][] costMatrix;
+    int[][] indexMapping;
+
 
 	public SeamsCarver(Logger logger, BufferedImage workingImage, int outWidth, RGBWeights rgbWeights,
 			boolean[][] imageMask) {
@@ -60,6 +63,40 @@ public class SeamsCarver extends ImageProcessor {
 		// TODO: Implement this method (bonus), remove the exception.
 		throw new UnimplementedMethodException("showSeams");
 	}
+
+	private void initIndexMapping(){
+        // TODO
+    }
+
+    private int[][] calculateEnergyMatrix(){
+	    // TODO
+	    return null;
+    }
+
+    private void calculateCostMatrix(){
+	    // TODO
+        int[][] costMatrix = new int[inHeight][inWidth];
+        int[][] energyMatrix = calculateEnergyMatrix();
+        // initialize 
+
+        for (int i = 0; i < energyMatrix.length; i++) {
+            for (int j = 0; j < energyMatrix[i].length; j++) {
+                
+            }
+        }
+    }
+
+    private void updateIndexMapping(int i, int j, boolean remove){
+	    // TODO
+    }
+
+    private void removeOneSeam(){
+        // TODO
+    }
+
+    private void addOneSeam(){
+        // TODO
+    }
 
 	public boolean[][] getMaskAfterSeamCarving() {
 		// TODO: Implement this method, remove the exception.
