@@ -104,7 +104,7 @@ public class ImageProcessor extends FunctioalForEachLoops {
             int red = r * c.getRed() / max;
             int green = g * c.getGreen() / max;
             int blue = b * c.getBlue() / max;
-            int avg = (red+green+blue)/3;
+            int avg = (red+green+blue)/(r+g+b);
             Color newColor = new Color(avg,avg,avg);
             ans.setRGB(x, y, newColor.getRGB());
         });
